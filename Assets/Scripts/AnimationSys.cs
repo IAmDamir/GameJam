@@ -40,4 +40,14 @@ public class AnimationSys : MonoBehaviour
             anim.Play("bow");
         }
     }
+
+    public void Play(string clipName)
+    {
+        anim.Play(clipName);
+    }
+
+    public AnimatorStateInfo StateInfo(int num = 0)
+    {
+        return anim.GetCurrentAnimatorStateInfo(num);
+    }
 }
