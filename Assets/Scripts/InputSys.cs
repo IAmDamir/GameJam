@@ -77,7 +77,7 @@ public class InputSys : MonoBehaviour
     public void Bow()
     {
         _bow = /*controls.Actions.Bow.triggered;
-        bool bowReleased =*/ controls.Actions.Bow.WasReleasedThisFrame();
+        bool bowReleased =*/ controls.Actions.Bow.triggered;
         /*if (bowReleased)
         {
             Debug.Log(Time.time);
@@ -114,5 +114,10 @@ public class InputSys : MonoBehaviour
 
             cam.fieldOfView = Mathf.MoveTowards(cam.fieldOfView, zoomPosition, angle / zoomDuration * Time.fixedDeltaTime);
         }
+    }
+
+    public NewControls GetControls()
+    {
+        return controls;
     }
 }
