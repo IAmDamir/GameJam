@@ -10,7 +10,6 @@ public class ProjectileSpawner : MonoBehaviour
     [SerializeField] private float lerpDuration = 0.1f;
     [SerializeField] private float startRotationAngle = 20;
     [SerializeField] private float targetRotationAngle = -20;
-    private bool rotating;
 
     private void Start()
     {
@@ -46,7 +45,6 @@ public class ProjectileSpawner : MonoBehaviour
 
     private IEnumerator Rotate90()
     {
-        rotating = true;
         float timeElapsed = 0;
         Quaternion startRotation = transform.rotation * Quaternion.Euler(0, startRotationAngle, 0);
         Quaternion targetRotation = transform.rotation * Quaternion.Euler(0, targetRotationAngle, 0);
@@ -57,6 +55,5 @@ public class ProjectileSpawner : MonoBehaviour
             yield return null;
         }
         transform.rotation = targetRotation;
-        rotating = false;
     }
 }

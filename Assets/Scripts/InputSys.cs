@@ -16,8 +16,6 @@ public class InputSys : MonoBehaviour
     public bool _dash;
     public bool _bow;
 
-    private Vector3 mousePos;
-
     private Ray cameraRay;                // The ray that is cast from the camera to the mouse position
     private RaycastHit cameraRayHit;    // The object that the ray hits
     public Transform player;
@@ -76,12 +74,7 @@ public class InputSys : MonoBehaviour
 
     public void Bow()
     {
-        _bow = /*controls.Actions.Bow.triggered;
-        bool bowReleased =*/ controls.Actions.Bow.triggered;
-        /*if (bowReleased)
-        {
-            Debug.Log(Time.time);
-        }*/
+        _bow = controls.Actions.Bow.triggered;
     }
 
     public Vector3 MouseWorldPos()
@@ -103,7 +96,6 @@ public class InputSys : MonoBehaviour
     {
         float zoom = controls.Actions.Zoom.ReadValue<float>();
         zoom = -zoom;
-        //zoom /= 120;
 
         if (zoom != 0)
         {

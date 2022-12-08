@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class BowPerk : PerksInterface
 {
@@ -25,15 +22,9 @@ public class BowPerk : PerksInterface
     public override void Code()
     {
         pm.transform.LookAt(inp.MouseWorldPos());
-        //prSpawner.transform.rotation = pm.transform.rotation;
 
         anim.BowUse();
         prSpawner.Shoot(plSpawner.position, plSpawner.rotation);
-        Debug.Log("pew at " + inp.MouseWorldPos());
-        /*if(anim.anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.9f)
-        {
-            Debug.Log("pew at " + inp.MouseWorldPos());
-        }*/
     }
 
     public void Rotate()
