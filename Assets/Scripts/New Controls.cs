@@ -53,6 +53,15 @@ public partial class @NewControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""f7e008d7-da34-4849-bbf9-eb74e52a5853"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -86,6 +95,17 @@ public partial class @NewControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Zoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""29652da6-a7fd-49bb-a68a-0a5240fe7191"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -171,6 +191,7 @@ public partial class @NewControls : IInputActionCollection2, IDisposable
         m_Actions_Dash = m_Actions.FindAction("Dash", throwIfNotFound: true);
         m_Actions_Bow = m_Actions.FindAction("Bow", throwIfNotFound: true);
         m_Actions_Zoom = m_Actions.FindAction("Zoom", throwIfNotFound: true);
+        m_Actions_Attack = m_Actions.FindAction("Attack", throwIfNotFound: true);
         // Aim
         m_Aim = asset.FindActionMap("Aim", throwIfNotFound: true);
         m_Aim_Mouse = m_Aim.FindAction("Mouse", throwIfNotFound: true);
@@ -236,6 +257,7 @@ public partial class @NewControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Actions_Dash;
     private readonly InputAction m_Actions_Bow;
     private readonly InputAction m_Actions_Zoom;
+    private readonly InputAction m_Actions_Attack;
     public struct ActionsActions
     {
         private @NewControls m_Wrapper;
@@ -243,6 +265,7 @@ public partial class @NewControls : IInputActionCollection2, IDisposable
         public InputAction @Dash => m_Wrapper.m_Actions_Dash;
         public InputAction @Bow => m_Wrapper.m_Actions_Bow;
         public InputAction @Zoom => m_Wrapper.m_Actions_Zoom;
+        public InputAction @Attack => m_Wrapper.m_Actions_Attack;
         public InputActionMap Get() { return m_Wrapper.m_Actions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -261,6 +284,9 @@ public partial class @NewControls : IInputActionCollection2, IDisposable
                 @Zoom.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnZoom;
                 @Zoom.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnZoom;
                 @Zoom.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnZoom;
+                @Attack.started -= m_Wrapper.m_ActionsActionsCallbackInterface.OnAttack;
+                @Attack.performed -= m_Wrapper.m_ActionsActionsCallbackInterface.OnAttack;
+                @Attack.canceled -= m_Wrapper.m_ActionsActionsCallbackInterface.OnAttack;
             }
             m_Wrapper.m_ActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -274,6 +300,9 @@ public partial class @NewControls : IInputActionCollection2, IDisposable
                 @Zoom.started += instance.OnZoom;
                 @Zoom.performed += instance.OnZoom;
                 @Zoom.canceled += instance.OnZoom;
+                @Attack.started += instance.OnAttack;
+                @Attack.performed += instance.OnAttack;
+                @Attack.canceled += instance.OnAttack;
             }
         }
     }
@@ -316,6 +345,7 @@ public partial class @NewControls : IInputActionCollection2, IDisposable
         void OnDash(InputAction.CallbackContext context);
         void OnBow(InputAction.CallbackContext context);
         void OnZoom(InputAction.CallbackContext context);
+        void OnAttack(InputAction.CallbackContext context);
     }
     public interface IAimActions
     {
