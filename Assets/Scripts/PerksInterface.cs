@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.Interactions;
 
 public abstract class PerksInterface
 {
@@ -37,6 +38,7 @@ public abstract class PerksInterface
             }
         }
     }
+
     //
-    abstract public void Code();
+    public abstract void Code();
 }
