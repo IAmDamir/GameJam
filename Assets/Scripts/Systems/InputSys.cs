@@ -77,6 +77,16 @@ public class InputSys : MonoBehaviour
         _bow = controls.Actions.Bow.triggered;
     }
 
+    public bool Submit()
+    {
+        return controls.UI.Submit.triggered;
+    }
+
+    public bool Interact()
+    {
+        return controls.Actions.Interact.triggered;
+    }
+
     public Vector3 MouseWorldPos()
     {
         // Cast a ray from the camera to the mouse cursor
