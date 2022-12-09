@@ -32,6 +32,13 @@ public class Player : MonoBehaviour
     public float dashDuration;
     public float dashCooldown;
 
+    [Header("Spear")]
+    private SpearPerk spear;
+
+    public Spear spearSpawner;
+    public float spearDuration;
+    public float spearCooldown;
+
     [Header("Bow")]
     private BowPerk bow;
 
@@ -63,12 +70,19 @@ public class Player : MonoBehaviour
 
         inputSys.GetControls().Actions.Bow.performed += _ => BowUse();
         inputSys.GetControls().Actions.Attack.performed += _ => Attack();
+        inputSys.GetControls().Actions.Spear.performed += _ => Spear();
+    }
+
+    private void Spear()
+    {
+        spear.Rotate();
+        spear.Action(true);
     }
 
     private void BowUse()
     {
-        bow.Action(true);
         bow.Rotate();
+        bow.Action(true);
     }
 
     private void Attack()
@@ -101,7 +115,7 @@ public class Player : MonoBehaviour
         if (noOfClicks >= 3 && anim.StateInfo().normalizedTime > 0.8 && anim.StateInfo().IsName(animationList[Attacks.Attack2]))
         {
             anim.Play(animationList[Attacks.Attack3]);
-            StartCoroutine(AttackCollider(AttackColliders[1], 0.2f, 0.6f));
+            StartCoroutine(AttackCollider(AttackColliders[2], 0.2f, 0.6f));
         }
     }
 
@@ -122,6 +136,7 @@ public class Player : MonoBehaviour
 
         dash = new DashPerk(dashDuration, dashCooldown, inputSys, rb, speed);
         bow = new BowPerk(bowDuration, bowCooldown, inputSys, anim, playerModel, projSpawner, projSpawnerTransform);
+        spear = new SpearPerk(bowDuration, bowCooldown, inputSys, anim, playerModel, spearSpawner);
     }
 
     // Update is called once per frame
@@ -162,5 +177,6 @@ public class Player : MonoBehaviour
         dash.Action(inputSys._dash);
 
         bow.Action(false);
+        spear.Action(false);
     }
 }
